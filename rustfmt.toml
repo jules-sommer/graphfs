@@ -1,0 +1,6 @@
+tab_spaces = 2
+newline_style = "Unix"
+max_width = 80
+fn_call_width = 70
+comment_width = 60
+wrap_comments = true
