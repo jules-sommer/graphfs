@@ -8,11 +8,11 @@ use serde::{Deserialize, Serialize};
 /// A function that generates unique IDs for nodes and
 /// edges. The function is curried, returning a closure that
 /// generates the next ID.
-fn id_generator() -> impl FnMut() -> Arc<ID> {
-  static ID: AtomicUsize = AtomicUsize::new(0);
+fn id_generator() -> impl FnMut() -> ID {
+  static ID: AtomicUsize = AtomicUsize::new(1);
   move || {
-    let id = ID.fetch_add(1, Ordering::Relaxed) as usize;
-    Arc::new(ID::from(id))
+    let id = ID.fetch_add(1, Ordering::Relaxed);
+    ID::from(id)
   }
 }
 
