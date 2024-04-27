@@ -1,4 +1,4 @@
-pub mod id;
+mod id;
 
 use std::{
   collections::HashMap,

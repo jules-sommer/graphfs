@@ -8,24 +8,11 @@ use serde::{Deserialize, Serialize};
 /// A function that generates unique IDs for nodes and
 /// edges. The function is curried, returning a closure that
 /// generates the next ID.
-///
-/// # Example
-///
-/// ```
-/// use graph::id_generator;
-///
-/// let next_id = id_generator();
-/// let id1 = next_id();
-/// let id2 = next_id();
-///
-/// assert_eq!(id1, 0);
-/// assert_eq!(id2, 1);
-/// ```
-fn id_generator() -> impl FnMut() -> Arc<AtomicUsize> {
+fn id_generator() -> impl FnMut() -> Arc<ID> {
   static ID: AtomicUsize = AtomicUsize::new(0);
   move || {
-    let id = ID.fetch_add(1, Ordering::Relaxed);
-    Arc::new(id.into())
+    let id = ID.fetch_add(1, Ordering::Relaxed) as usize;
+    Arc::new(ID::from(id))
   }
 }
 
@@ -67,5 +54,25 @@ impl<'de> Deserialize<'de> for ID {
   {
     let value = usize::deserialize(deserializer)?;
     Ok(Self::from(value))
+  }
+}
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_id_generator() {
+    let mut next_id = id_generator();
+    let id1 = next_id().get();
+    let id2 = next_id().get();
+
+    next_id(); // Ignore the next ID
+
+    let id3 = next_id().get();
+
+    assert_eq!(id1, 0);
+    assert_eq!(id2, 1);
+    assert_eq!(id3, 3);
   }
 }
