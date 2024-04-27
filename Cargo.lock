@@ -231,29 +231,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a47c1c47d2f5964e29c61246e81db715514cd532db6b5116a25ea3c03d6780a2"
 
 [[package]]
-name = "filesagain"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "clap",
- "ctor",
- "glob",
- "jwalk",
- "lazy_static",
- "rayon",
- "regex",
- "serde",
- "serde_json",
- "strum",
- "strum_macros",
- "thiserror",
- "tokio",
- "tracing",
- "tracing-subscriber",
- "tracing-tree",
-]
-
-[[package]]
 name = "gimli"
 version = "0.28.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -266,6 +243,24 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d2fabcfbdc87f4758337ca535fb41a6d701b65693ce38287d856d1674551ec9b"
 
 [[package]]
+name = "graph"
+version = "0.1.0"
+dependencies = [
+ "glob",
+ "jwalk",
+ "lazy_static",
+ "rayon",
+ "regex",
+ "serde",
+ "serde_json",
+ "strum",
+ "strum_macros",
+ "tracing",
+ "tracing-subscriber",
+ "tracing-tree",
+]
+
+[[package]]
 name = "heck"
 version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -276,6 +271,23 @@ name = "hermit-abi"
 version = "0.3.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d231dfb89cfffdbc30e7fc41579ed6066ad03abda9e567ccafae602b97ec5024"
+
+[[package]]
+name = "indexer"
+version = "0.1.0"
+dependencies = [
+ "glob",
+ "graph",
+ "jwalk",
+ "lazy_static",
+ "rayon",
+ "regex",
+ "strum",
+ "strum_macros",
+ "tracing",
+ "tracing-subscriber",
+ "tracing-tree",
+]
 
 [[package]]
 name = "itoa"
@@ -501,6 +513,31 @@ name = "regex-syntax"
 version = "0.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "adad44e29e4c806119491a7f06f03de4d1af22c3a680dd47f1e6e179439d1f56"
+
+[[package]]
+name = "runtime"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "ctor",
+ "glob",
+ "graph",
+ "indexer",
+ "jwalk",
+ "lazy_static",
+ "rayon",
+ "regex",
+ "serde",
+ "serde_json",
+ "strum",
+ "strum_macros",
+ "thiserror",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+ "tracing-tree",
+]
 
 [[package]]
 name = "rustc-demangle"

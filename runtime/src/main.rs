@@ -1,6 +1,8 @@
 use jwalk::WalkDir;
 use lazy_static::lazy_static;
 use regex::Regex;
+use std::env::args;
+use std::os;
 use tracing::{info, span, Level};
 use tracing_subscriber::{prelude::*, Registry};
 use tracing_tree::HierarchicalLayer;
@@ -25,9 +27,4 @@ fn init_tracing() {
 }
 
 #[tokio::main]
-async fn main() {
-  for entry in WalkDir::new(".") {
-    let entry = entry.unwrap();
-    info!(entry = ?entry)
-  }
-}
+async fn main() {}
